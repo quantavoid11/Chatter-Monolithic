@@ -1,34 +1,35 @@
-import mongoose,{Document,Schema} from "mongoose";
-import {IUser} from "./index";
-export interface IGroup extends Document{
-    name:string,
-    description?:string,
-    groupPhoto?:string,
-    admin:Schema.Types.ObjectId | IUser ,
-    participants:Schema.Types.ObjectId[] | IUser[]
+import mongoose, { Document, Schema } from "mongoose";
+import { IUser } from "./index";
+export interface IGroup extends Document {
+    name: string,
+    description?: string,
+    groupPhoto?: string,
+    admin: Schema.Types.ObjectId | IUser,
+    participants: Schema.Types.ObjectId[] | IUser[]
 }
 
-const groupSchema=new Schema<IGroup>({
-    name:{
-        type:String,
-        required:true
+const groupSchema = new Schema<IGroup>({
+    name: {
+        type: String,
+        required: true
     },
-    description:{
-        type:String
+    description: {
+        type: String
     },
-    groupPhoto:{
-        type:String
+    groupPhoto: {
+        type: String
     },
-    admin:{
-        type:Schema.Types.ObjectId,
-        ref:"User",
-        required:true
+    admin: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     },
-    participants:[
+    participants: [
         {
-            tye:Schema.Types.ObjectId,
-            ref:"User"
+            tye: Schema.Types.ObjectId,
+            ref: "User"
         }
     ]
 })
-export const Group=mongoose.model<IGroup>("Group",groupSchema);
+
+export const Group = mongoose.model<IGroup>("Group", groupSchema);

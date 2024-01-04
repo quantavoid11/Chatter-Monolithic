@@ -1,24 +1,22 @@
-import mongoose,{Document,Schema} from "mongoose";
-import {IUser,IChat} from "./index";
+import mongoose, { Document, Schema } from "mongoose";
+import { IUser, IChat } from "./index";
 
-
-
-export interface Iusers_chat extends Document{
-    user:Schema.Types.ObjectId | IUser,
-    chats:Schema.Types.ObjectId[]| IChat[]
+export interface Iusers_chat extends Document {
+    user: Schema.Types.ObjectId | IUser,
+    chats: Schema.Types.ObjectId[] | IChat[]
 }
 
-const users_ChatSchema=new Schema<Iusers_chat>({
-    user:{
-        type:Schema.Types.ObjectId,
-        ref:"User"
+const users_ChatSchema = new Schema<Iusers_chat>({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
-    chats:[
+    chats: [
         {
-            type:Schema.Types.ObjectId,
-            ref:"Chat"
+            type: Schema.Types.ObjectId,
+            ref: "Chat"
         }
     ]
 })
 
-export const Users_Chat=mongoose.model<Iusers_chat>("Users_Chat",users_ChatSchema)
+export const Users_Chat = mongoose.model<Iusers_chat>("Users_Chat", users_ChatSchema)
